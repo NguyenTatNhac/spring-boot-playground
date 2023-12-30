@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:15.5-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=spring_boot_playground
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=nguyentatnhac@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8090:80"
+    depends_on:
+      - postgres
+volumes:
+  postgres_data:
