@@ -6,6 +6,7 @@ import com.ntnguyen.pground.springboot.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article createArticle() {
         String randomTitle = UUID.randomUUID().toString();
-        ArticleEntity article = new ArticleEntity(null, randomTitle);
+        ArticleEntity article = new ArticleEntity(null, randomTitle, new Date());
         articleRepository.save(article);
         return new Article(article.getId(), article.getTitle());
     }
